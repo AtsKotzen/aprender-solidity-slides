@@ -2,9 +2,9 @@
 marp: true
 ---
 
-# Smart Contracts: A Blockchain Program
+# Smart Contracts: Um Programa em Blockchain
 
-A smart contract is blockchain-deployed code. For example:
+Um contrato inteligente é um código implantado na blockchain. Por exemplo:
 
 ```js
 contract Agreement {
@@ -12,61 +12,48 @@ contract Agreement {
   bool conditionIsMet;
 
   function payout() external {
-    if(conditionIsMet) {
+    if (conditionIsMet) {
       sendValue(recipient);
     }
   }
 
   // ...
 }
-```
 
 ---
 
-## Deploying a Contract
+## Implantando um Contrato
 
-1. ⚙️ compile your **solidity** to bytecode
-2. ✉️ send a transaction containing the bytecode to an EVM node
-3. 🏡 the node calculates an address for your new contract
+- ⚙️ compile seu código **solidity** para bytecode
+- ✉️ envie uma transação contendo o bytecode para um nó EVM
+- 🏡 o nó calcula um endereço para o seu novo contrato
 
----
+## Implantação do Contrato
 
-## Contract Deployment
+| Opcode | Nome | Descrição                   | Gas |
+| ------ | ---- | ----------------------------| --- |
+| `0x00` | STOP  | Interrompe a execução       | 0   |
+| `0x01` | ADD   | Operação de adição          | 3   |
+| `0x02` | MUL   | Operação de multiplicação   | 5   |
+| `0x03` | SUB   | Operação de subtração       | 3   |
 
-![deployment](imgs/contract-deployment.png)
+[Referência](https://ethereum.org/en/developers/docs/evm/opcodes/)
 
----
+## Principais Conclusões
 
-| Opcode | Name | Description              | Gas |
-| ------ | ---- | ------------------------ | --- |
-| `0x00` | STOP | Halts execution          | 0   |
-| `0x01` | ADD  | Addition operation       | 3   |
-| `0x02` | MUL  | Multiplication operation | 5   |
-| `0x03` | SUB  | Subtraction operation    | 3   |
+1. ⚙️ Contratos são compilados para bytecode de criação
+2. ⛓ O campo `data` contém seu bytecode de criação
+3. 📭 O campo `to` é deixado em branco para implantar um contrato
+4. 🏡 Seu contrato terá um endereço, saldo e bytecode de execução
 
-https://ethereum.org/en/developers/docs/evm/opcodes/
-
----
-
-## Key Takeaways
-
-1. ⚙️ Contracts are compiled to creation bytecode
-2. ⛓ The `data` field contains your creation bytecode
-3. 📭 The `to` field is left blank to deploy a contract
-4. 🏡 Your contract will have an address, balance and runtime bytecode
+## Ciclo de Vida de uma Transação
 
 ---
 
-## Transaction Life Cycle
+## Principais Conclusões
 
-![communication](imgs/contract-communication.png)
-
----
-
-## Key Takeaways
-
-1. 🥾 Transactions begin at an EOA
-2. ☝️ Transactions occur sequentially
-3. ⛽️ Transactions set a gas limit
-4. 🎯 Transactions send calldata, targetting a contract method
-5. 🌐 Similarly smart contracts can call each other within the one transaction
+1. 🥾 As transações começam em uma EOA (Conta Externamente Controlada)
+2. ☝️ As transações ocorrem de forma sequencial
+3. ⛽️ As transações definem um limite de gas
+4. 🎯 As transações enviam calldata, visando um método do contrato
+5. 🌐 Da mesma forma, os contratos inteligentes podem chamar uns aos outros dentro de uma mesma transação
